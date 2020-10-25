@@ -55,3 +55,84 @@ content="Example Chat with Socket.io"/>
   </body>
 </html>
 ```
+
+
+
+
+<br />
+<br />
+
+
+ _____________________________________________________
+ _____________________________________________________
+
+
+<br />
+<br />
+
+# Message
+
+## Send Message from Client to Server
+```javascript
+// ## SERVER SIDE ##
+socket.on('chat message', (msg) => {
+   console.log('message: ' + msg);
+});
+
+// ## CLIENT SIDE ##
+socket.emit('chat message', $('#m').val());
+```
+
+
+<br />
+<br />
+
+
+ _____________________________________________________
+ _____________________________________________________
+
+
+<br />
+<br />
+
+# Room
+
+
+## Connect to Room
+```javascript
+// ## SERVER SIDE ##
+socket.on('chat connect', (msg) => {
+console.log('connect - message: ' + JSON.stringify(msg, null, 4));
+
+        socket.join(msg.room);
+
+});
+
+// ## CLIENT SIDE ##
+socket.emit('chat connect', {"room": details.room, "usertoken": details.usertoken}); // <-- user token is optional here.. but maybe usefully for future production..
+```
+
+
+
+
+
+<br />
+<br />
+
+
+
+## Send Message to Room
+```javascript
+// ## SERVER SIDE ##
+socket.on('chat message', (msg) => {
+console.log('chat message - message: ' + JSON.stringify(msg, null, 4));
+
+        socket.to(msg.room).emit('msg', msg.msg);
+
+});
+
+// ## CLIENT SIDE ##
+socket.emit('chat message', {"msg": msg, "room": details.room, "usertoken": details.usertoken}); // <-- user token is optional here.. but maybe usefully for future production..
+```
+
+

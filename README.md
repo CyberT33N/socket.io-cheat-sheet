@@ -97,7 +97,6 @@ socket.emit('chat message', $('#m').val());
 
 # Room
 
-
 ## Connect to Room
 ```javascript
 // ## SERVER SIDE ##
@@ -135,4 +134,29 @@ console.log('chat message - message: ' + JSON.stringify(msg, null, 4));
 socket.emit('chat message', {"msg": msg, "room": details.room, "usertoken": details.usertoken}); // <-- user token is optional here.. but maybe usefully for future production..
 ```
 
+
+
+
+<br />
+<br />
+
+
+ _____________________________________________________
+ _____________________________________________________
+
+
+<br />
+<br />
+
+# Listener
+
+
+## Remove Listener
+```javascript
+//To unsubscribe all listeners of an event
+socket.off('event-name');
+
+//to unsubscribe a certain listener
+socket.off('event-name', listener);
+```
 
